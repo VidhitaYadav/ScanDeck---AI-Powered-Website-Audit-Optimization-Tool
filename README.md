@@ -109,41 +109,4 @@ Your `.env` files are already excluded by `.gitignore`, so your API keys will
 
 ## 6. Deploying (free tiers)
 
-You'll deploy `client` and `server` as two separate services.
 
-### Deploy the backend (`server`) on Render
-1. Go to [render.com](https://render.com) → sign in with GitHub.
-2. **New → Web Service** → select your repo.
-3. Set **Root Directory** to `server`.
-4. **Build Command:** `npm install` **Start Command:** `npm start`
-5. Under **Environment**, add the same variables from `server/.env`:
-   - `GEMINI_API_KEY` = your key
-   - `CLIENT_ORIGIN` = (leave for now, update after step below)
-6. Click **Create Web Service**. Once deployed, copy the live URL, e.g. `https://scandeck-server.onrender.com`.
-
-### Deploy the frontend (`client`) on Vercel
-1. Go to [vercel.com](https://vercel.com) → sign in with GitHub.
-2. **Add New → Project** → select your repo.
-3. Set **Root Directory** to `client`.
-4. Framework preset: **Vite**.
-5. Under **Environment Variables**, add:
-   - `VITE_PAGESPEED_API_KEY` = your key
-   - `VITE_API_BASE_URL` = the Render URL from the previous step (e.g. `https://scandeck-server.onrender.com`)
-6. Click **Deploy**. Vercel gives you a live URL, e.g. `https://scandeck.vercel.app`.
-
-### Final step: connect the two
-Go back to your Render service → **Environment** → set `CLIENT_ORIGIN` to your
-Vercel URL (e.g. `https://scandeck.vercel.app`) → save (Render redeploys
-automatically). This lets your live frontend call your live backend.
-
-Both platforms auto-redeploy every time you `git push` to `main`.
-
-## 7. Notes for your resume / interview
-
-- The PageSpeed API key is used client-side, which is standard for this
-  public, quota-limited Google API — mention this as a conscious trade-off if asked.
-- The backend exists specifically to keep the Gemini key server-side — a good
-  talking point on API-key security practices.
-- Scan history uses `localStorage` for zero-backend simplicity; a natural
-  "next step" to mention is swapping it for a small database (e.g. MongoDB or
-  Postgres) if asked how you'd scale it for multiple users.
