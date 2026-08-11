@@ -5,6 +5,8 @@ Accessibility, Best Practices) plus AI-generated, plain-English fix
 recommendations. Scan history is kept per browser so you can track a site's
 improvement over time.
 
+Deployed on Render: [scandeck-client.onrender.com](https://scandeck-client.onrender.com/)
+
 **Stack:** React (Vite) + Bootstrap on the frontend, Node/Express backend,
 Google PageSpeed Insights API for the audit, Gemini API for recommendations.
 
